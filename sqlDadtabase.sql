@@ -2,7 +2,7 @@
 -- Création des tables pour la boutique
 -- ==============================
 
--- 1️⃣ Catégories
+--  Catégories
 
 
 CREATE TABLE categories (
@@ -12,7 +12,7 @@ CREATE TABLE categories (
     created_at DATETIME DEFAULT NOW()
 );
 
--- 2️⃣ Marques
+--  Marques
 CREATE TABLE marques (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(255) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE marques (
     created_at DATETIME DEFAULT NOW()
 );
 
--- 3️⃣ Produits
+--  Produits
 CREATE TABLE produits (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(255) NOT NULL,
@@ -33,20 +33,20 @@ CREATE TABLE produits (
     FOREIGN KEY (categorie_id) REFERENCES categories(id)
 );
 
--- 4️⃣ Couleurs
+--  Couleurs
 CREATE TABLE couleurs (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(50),
     code_hex VARCHAR(10)
 );
 
--- 5️⃣ Tailles
+--  Tailles
 CREATE TABLE tailles (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(50)
 );
 
--- 6️⃣ Variants de produits
+--  Variants de produits
 CREATE TABLE produit_variants (
     id INT PRIMARY KEY AUTO_INCREMENT,
     produit_id INT NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE produit_variants (
 
 
 
--- 7️⃣ Clients
+--  Clients
 CREATE TABLE clients (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(100),
@@ -78,7 +78,7 @@ CREATE TABLE clients (
 
 
 
--- 9️⃣ Entrepots
+-- Entrepots
 CREATE TABLE entrepots (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(255),
@@ -87,7 +87,7 @@ CREATE TABLE entrepots (
     numero INT
 );
 
--- 🔟 Commandes
+--Commandes
 CREATE TABLE commandes (
     id INT PRIMARY KEY AUTO_INCREMENT,
     client_id INT NOT NULL,
@@ -97,7 +97,7 @@ CREATE TABLE commandes (
     FOREIGN KEY (client_id) REFERENCES clients(id)
 );
 
--- 1️⃣1️⃣ Détails de commandes
+-- Détails de commandes
 CREATE TABLE commande_details (
     id INT PRIMARY KEY AUTO_INCREMENT,
     commande_id INT NOT NULL,
@@ -111,7 +111,7 @@ CREATE TABLE commande_details (
 
 
 
--- 1️⃣3️⃣ Méthodes de paiement
+--  Méthodes de paiement
 CREATE TABLE methodes_paiement (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(100)
@@ -119,7 +119,7 @@ CREATE TABLE methodes_paiement (
 
 
 
--- 1️⃣5️⃣ Transporteurs
+--  Transporteurs
 CREATE TABLE transporteurs (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(255),
@@ -127,7 +127,7 @@ CREATE TABLE transporteurs (
     email VARCHAR(255)
 );
 
--- 1️⃣6️⃣ Stocks
+--  Stocks
 CREATE TABLE stocks (
     id INT PRIMARY KEY AUTO_INCREMENT,
     produit_variant_id INT NOT NULL,
@@ -137,7 +137,7 @@ CREATE TABLE stocks (
     FOREIGN KEY (entrepot_id) REFERENCES entrepots(id)
 );
 
--- 1️⃣7️⃣ Mouvements de stock
+--  Mouvements de stock
 CREATE TABLE mouvements_stock (
     id INT PRIMARY KEY AUTO_INCREMENT,
     stock_id INT NOT NULL,
@@ -147,7 +147,7 @@ CREATE TABLE mouvements_stock (
     FOREIGN KEY (stock_id) REFERENCES stocks(id)
 );
 
--- 1️⃣8️⃣ Promotions
+--  Promotions
 CREATE TABLE promotions (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(255),
@@ -157,7 +157,7 @@ CREATE TABLE promotions (
     date_fin DATE
 );
 
--- 1️⃣9️⃣ Produit_Promotions
+--  Produit_Promotions
 CREATE TABLE produit_promotions (
     id INT PRIMARY KEY AUTO_INCREMENT,
     produit_variant_id INT NOT NULL,
@@ -167,7 +167,7 @@ CREATE TABLE produit_promotions (
     FOREIGN KEY (promotion_id) REFERENCES promotions(id)
 );
 
--- 2️⃣0️⃣ Avis produits
+--  Avis produits
 CREATE TABLE avis_produits (
     id INT PRIMARY KEY AUTO_INCREMENT,
     produit_id INT NOT NULL,
@@ -179,14 +179,14 @@ CREATE TABLE avis_produits (
     FOREIGN KEY (client_id) REFERENCES clients(id)
 );
 
--- 2️⃣2️⃣ Roles
+--  Roles
 CREATE TABLE roles (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(100),
     description TEXT
 );
 
--- 2️⃣1️⃣ Utilisateurs 
+--  Utilisateurs 
 CREATE TABLE utilisateurs (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(100),
@@ -199,7 +199,7 @@ CREATE TABLE utilisateurs (
 
 
 
--- 2️⃣3️⃣ Tickets support
+--  Tickets support
 CREATE TABLE tickets_support (
     id INT PRIMARY KEY AUTO_INCREMENT,
     client_id INT,
@@ -209,7 +209,7 @@ CREATE TABLE tickets_support (
     FOREIGN KEY (client_id) REFERENCES clients(id)
 );
 
--- 2️⃣4️⃣ Notes internes 
+--  Notes internes 
 CREATE TABLE notes_internes (
     id INT PRIMARY KEY AUTO_INCREMENT,
     utilisateur_id INT,
@@ -218,7 +218,7 @@ CREATE TABLE notes_internes (
     FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id)
 );
 
--- 2️⃣5️⃣ Campagnes marketing
+--  Campagnes marketing
 CREATE TABLE campagnes_marketing (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(255),
@@ -226,7 +226,7 @@ CREATE TABLE campagnes_marketing (
     date_fin DATE
 );
 
--- 2️⃣6️⃣ Produit images
+--  Produit images
 CREATE TABLE produit_images (
     id INT PRIMARY KEY AUTO_INCREMENT,
     produit_id INT,
@@ -235,7 +235,7 @@ CREATE TABLE produit_images (
     FOREIGN KEY (produit_id) REFERENCES produits(id)
 );
 
--- 2️⃣7️⃣ Sessions utilisateurs   
+--  Sessions utilisateurs   
 CREATE TABLE sessions_utilisateurs (
     id INT PRIMARY KEY AUTO_INCREMENT,
     utilisateur_id INT,
@@ -244,7 +244,7 @@ CREATE TABLE sessions_utilisateurs (
     FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id)
 );
 
--- 2️⃣8️⃣ Retours
+--  Retours
 CREATE TABLE retours (
     id INT PRIMARY KEY AUTO_INCREMENT,
     commande_id INT NOT NULL,
@@ -253,7 +253,7 @@ CREATE TABLE retours (
     FOREIGN KEY (commande_id) REFERENCES commandes(id)
 );
 
--- 2️⃣9️⃣ Fournisseurs
+--  Fournisseurs
 CREATE TABLE fournisseurs (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(255),
@@ -283,7 +283,7 @@ CREATE TABLE adresses_clients (
         ON UPDATE CASCADE
 );
 
--- 8️⃣ Adresses 
+--  Adresses 
 CREATE TABLE adresses (
     id INT PRIMARY KEY AUTO_INCREMENT,
     client_id INT,
@@ -297,7 +297,7 @@ CREATE TABLE adresses (
     FOREIGN KEY (entrepot_id) REFERENCES entrepots(id)
 );
 
--- 1️⃣2️⃣ Paiements  
+--  Paiements  
 CREATE TABLE paiements (
     id INT PRIMARY KEY AUTO_INCREMENT,
     commande_id INT NOT NULL,
@@ -309,7 +309,7 @@ CREATE TABLE paiements (
     FOREIGN KEY (methode_paiement_id) REFERENCES methodes_paiement(id)
 );
 
--- 1️⃣4️⃣ Livraisons 
+--  Livraisons 
 CREATE TABLE livraisons (
     id INT PRIMARY KEY AUTO_INCREMENT,
     commande_id INT NOT NULL,
